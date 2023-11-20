@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Recognition Attendance System</title>
+    <link rel="stylesheet" type="text/css" href="C:\Users\asus\OneDrive\Desktop\yolov5_face\face-recognition\static\style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Attendance System</h1>
+    </div>
+    <div class="video-container">
+        <video id="video" autoplay></video>
+        <canvas id="canvas" width="640" height="480"></canvas>
+    </div>
+    <div class="buttons">
+        <button id="recognize-faces-button" class="button">Recognize Faces</button>
+        <button id="take-attendance-button" class="button">Take Attendance</button>
+        <div id="download-button" class="download-button">
+            <a class="button" href="{% url 'download_attendance' %}">Download Attendance</a>
+        </div>
+    </div>
+    <table class="attendance-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance_records %}
+            <tr>
+                <td>{{ record.name }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
